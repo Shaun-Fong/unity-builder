@@ -63,6 +63,25 @@ else
 fi
 
 #
+# Setup token for private package registry.
+#
+
+if [ -n "$PRIVATE_REGISTRY_TOKEN" ]; then
+  echo "Private registry token detected, creating .upmconfig.toml"
+
+  UPM_CONFIG_TOML_PATH="$HOME/.upmconfig.toml"
+  echo "Creating toml at path: $UPM_CONFIG_TOML_PATH"
+
+  touch $UPM_CONFIG_TOML_PATH
+
+  cat > "$UPM_CONFIG_TOML_PATH" <<EOF
+  [npmAuth."$SCOPED_REGISTRY_URL"]
+  token = "$PRIVATE_REGISTRY_TOKEN"
+  alwaysAuth = true
+EOF
+fi
+
+#
 # Pre-build debug information
 #
 
