@@ -103,9 +103,9 @@ class Docker {
             --workdir ${dockerWorkspacePath} \
             --rm \
             ${ImageEnvironmentFactory.getEnvVarString(parameters)} \
-            --env GITHUB_WORKSPACE=c:${dockerWorkspacePath} \
+            --env GITHUB_WORKSPACE=${dockerWorkspacePath} \
             ${gitPrivateToken ? `--env GIT_PRIVATE_TOKEN="${gitPrivateToken}"` : ''} \
-            --volume "${workspace}":"c:${dockerWorkspacePath}" \
+            --volume "${workspace}":"${dockerWorkspacePath}" \
             --volume "c:/regkeys":"c:/regkeys" \
             --volume "C:/Program Files/Microsoft Visual Studio":"C:/Program Files/Microsoft Visual Studio" \
             --volume "C:/Program Files (x86)/Microsoft Visual Studio":"C:/Program Files (x86)/Microsoft Visual Studio" \
